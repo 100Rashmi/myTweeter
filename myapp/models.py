@@ -9,7 +9,7 @@ class Account(models.Model):
     account_id = models.CharField(max_length=50, primary_key=True)
     account_email = models.CharField(max_length=50, unique=True)
     account_status = models.CharField(max_length=50)
-    login_password = models.CharField(max_length=50)
+    login_password = models.CharField(max_length=1024)
 
     class Meta:
         db_table = 'account'
@@ -25,14 +25,14 @@ class User(models.Model):
         db_table = 'user'
 
 
-class Dweets(models.Model):
+class Dweet(models.Model):
     account_id = models.CharField(max_length=50)
     dweet_data = models.TextField()
     dweet_id = models.CharField(max_length=50, primary_key=True)
-    dweet_created_time = models.DateTimeField()
+    created_time = models.DateTimeField()
 
     class Meta:
-        db_table = 'dweets_data'
+        db_table = 'dweet'
 
 
 class Like(models.Model):
@@ -43,11 +43,13 @@ class Like(models.Model):
         db_table = 'like'
         unique_together = ("account_id", "entity_id")
 
-class Comments(models.Model):
+
+class Comment(models.Model):
     account_id = models.CharField(max_length=50)
-    dweets_data_id = models.CharField(max_length=50)
+    dweet_id = models.CharField(max_length=50)
     comment_id = models.CharField(max_length=50, primary_key=True)
     comment_data = models.TextField()
+    created_time = models.DateTimeField()
 
     class Meta:
         db_table = 'comment'
@@ -60,3 +62,12 @@ class Follower(models.Model):
     class Meta:
         db_table = 'follower'
         unique_together = ("user_id", "followed_user_id")
+
+class Session(models.Model):
+    session_id = models.CharField(max_length=254, primary_key=True)
+    created_time = models.DateTimeField()
+    account_id = models.CharField(max_length=50)
+    last_used_time = models.DateTimeField()
+
+    class Meta:
+        db_table = 'session'
