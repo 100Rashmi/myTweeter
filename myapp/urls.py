@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'^like', myapp_views.like, name='like'),
     url(r'^comment', myapp_views.comment, name='comment'),
     url(r'^follow', myapp_views.follow, name='follow'),
+    url(r'^feed', myapp_views.feed, name='feed'),
 
 
 ]

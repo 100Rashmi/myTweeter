@@ -221,28 +221,35 @@ def follow(request):
         return getResonse({"status": "failed"}, 405)
 
 
-# def feed(request):
-#     errors = {}
-#     valid, data = validate_session(request)
-#     if not valid:
-#         return data
-#     if request.method == 'POST':
-#         try:
-#            user_id = data
-#            dweet = Follower.objects.filter(user_id=user_id, followed_user_id=
-#                                           Dweet.objects.values('account_id').order_by('-created_time')).select_related()
-#            dweets = Dweet.objects.filter(
-#                account_id=Follower.objects.filter(user_id = user_id).values('followed_user_id'))
-#
-#         except KeyError as ke:
-#            print ke
-#            return getResonse({"status": "failed", "data_missing": ke.message}, 422)
-#         except Exception as e:
-#             print e
-#             return getResonse({"status": "failed"}, 500)
-#
-#     else:
-#       return getResonse({"status": "failed"}, 405)
+def feed(request):
+    errors = {}
+    valid, data = validate_session(request)
+    print "Valid"
+    if not valid:
+        return getResonse({"status": "failed"}, 422)
+    if request.method == 'GET':
+        try:
+           user_id = data
+           dweetsCursor = Dweet.objects.filter(
+               account_id=Follower.objects.filter(user_id = user_id).values('followed_user_id')).values()
+           dweets = []
+           for i in range(0,len(dweetsCursor)):
+               dweet = dweetsCursor[i]
+               dweet['created_time'] = str(dweet['created_time'])
+               dweets.append( dweet )
+
+           print dweets
+
+           return getResonse({"status":"success", "data":dweets}, 200)
+        except KeyError as ke:
+           print ke
+           return getResonse({"status": "failed", "data_missing": ke.message}, 422)
+        except Exception as e:
+            print e
+            return getResonse({"status": "failed"}, 500)
+
+    else:
+      return getResonse({"status": "failed"}, 405)
 
 
 
@@ -358,7 +365,7 @@ def validate_account_verification(form):
 def validate_session(request):
     errors = {}
     try:
-        print "meta : " ,request.META
+        #print "meta : " ,request.META
         session_id = request.META['HTTP_SESSION_ID']
         account_id = request.META['HTTP_ACCOUNT_ID']
         sess = Session.objects.filter(session_id=session_id, account_id=account_id).values()
