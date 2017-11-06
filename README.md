@@ -95,3 +95,80 @@ curl -X GET
   - HayStack
   - Elastic Search
 
+
+## Data Model:
+
+
+- Table : Account
+
+| Field          | Type          | Null | Key | Default | Extra |
+|----------------|---------------|------|-----|---------|-------|
+| account_id     | varchar(50)   | NO   | PRI | NULL    |       |
+| account_email  | varchar(50)   | NO   | UNI | NULL    |       |
+| account_status | varchar(50)   | NO   |     | NULL    |       |
+| login_password | varchar(1024) | NO   | MUL | NULL    |       |
+
+- Table: User
+
+| Field             | Type        | Null | Key | Default | Extra |
+|-------------------|-------------|------|-----|---------|-------|
+| user_id           | varchar(50) | NO   | PRI | NULL    |       |
+| user_first_name   | varchar(50) | NO   |     | NULL    |       |
+| user_last_name    | varchar(50) | NO   |     | NULL    |       |
+| user_profile_name | varchar(50) | NO   | UNI | NULL    |       |
+| created_time      | datetime(6) | NO   |     | NULL    |       |
+| modified_time     | datetime(6) | NO   |     | NULL    |       |
+
+- Table: Dweet
+
+
+| Field        | Type        | Null | Key | Default | Extra |
+|--------------|-------------|------|-----|---------|-------|
+| account_id   | varchar(50) | NO   |     | NULL    |       |
+| dweet_data   | longtext    | NO   |     | NULL    |       |
+| dweet_id     | varchar(50) | NO   | PRI | NULL    |       |
+| created_time | datetime(6) | NO   |     | NULL    |       |
+
+
+- Table: Session
+
+| Field          | Type         | Null | Key | Default | Extra |
+|----------------|--------------|------|-----|---------|-------|
+| session_id     | varchar(254) | NO   | PRI | NULL    |       |
+| created_time   | datetime(6)  | NO   |     | NULL    |       |
+| account_id     | varchar(50)  | NO   | MUL | NULL    |       |
+| last_used_time | datetime(6)  | NO   | MUL | NULL    |       |
+
+
+- Table : Like
+
+| Field      | Type        | Null | Key | Default | Extra          |
+|------------|-------------|------|-----|---------|----------------|
+| id         | int(11)     | NO   | PRI | NULL    | auto_increment |
+| account_id | varchar(50) | NO   | MUL | NULL    |                |
+| entity_id  | varchar(50) | NO   | MUL | NULL    |                |
+
+- Table : Follower
+
+| Field            | Type        | Null | Key | Default | Extra          |
+|------------------|-------------|------|-----|---------|----------------|
+| id               | int(11)     | NO   | PRI | NULL    | auto_increment |
+| user_id          | varchar(50) | NO   | MUL | NULL    |                |
+| followed_user_id | varchar(50) | NO   |     | NULL    |                |
+
+
+- Table : Comment
+
+
+| Field        | Type        | Null | Key | Default | Extra |
+|--------------|-------------|------|-----|---------|-------|
+| account_id   | varchar(50) | NO   |     | NULL    |       |
+| dweet_id     | varchar(50) | NO   | MUL | NULL    |       |
+| comment_id   | varchar(50) | NO   | PRI | NULL    |       |
+| comment_data | longtext    | NO   |     | NULL    |       |
+| created_time | datetime(6) | NO   | MUL | NULL    |       |
+
+
+
+
+
