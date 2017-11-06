@@ -25,11 +25,12 @@ renewable after every use.
 ```
 curl -X POST
 -d '{   "email"  :  <emailid>,  "password"  : <password>  }'
-'http://localhost:8000/myapp/signup'
+'http://localhost:8000/myapp/login'
 ```
 
 ### Dweet API: `/dweet`
-```curl -X POST 
+```
+ curl -X POST 
 -H 'session-id:<session-id>'
 -H 'account-id:<account-id>'
 -d '{   "dweet_data"    :<dweet data>   }'
@@ -37,7 +38,8 @@ curl -X POST
 ```
 
 ### Comment API: `/comment`
-```curl -X POST 
+```
+ curl -X POST 
 -H 'session-id:<session-id>'
 -H 'account-id:<account-id>'
 -d '{   "dweet_id"  :  <dweet-id>  ,   "comment"   :   <comment>   }'
@@ -60,7 +62,7 @@ curl -X POST
 -H 'session-id:<session-id>'
 -H 'account-id:<account-id>'
 -d '{  "followed_user_id"  :  <userIdToBeFollowed>  }'
-'http://127.0.0.1:8000/myapp/follow
+'http://127.0.0.1:8000/myapp/follow'
 ```
 
 ### Get Dweets from followed Dweeters in your Feed `/feed`
@@ -68,7 +70,7 @@ curl -X POST
 curl -X GET
 -H 'session-id:<session-id>'
 -H 'account-id:<account-id>'
-'http://127.0.0.1:8000/myapp/feed
+'http://127.0.0.1:8000/myapp/feed'
 ```
 
 ### Search Dweets API: `/searchDweet`
@@ -76,7 +78,7 @@ curl -X GET
 curl -X GET
 -H 'session-id:<session-id>'
 -H 'account-id:<account-id>'
-'http://127.0.0.1:8000/myapp/searchDweet?q=<keywords>
+'http://127.0.0.1:8000/myapp/searchDweet?q=<keywords>'
 ```
 
 ### Search Users API: `/searchUsers`
@@ -84,7 +86,7 @@ curl -X GET
 curl -X GET
 -H 'session-id:<session-id>'
 -H 'account-id:<account-id>'
-'http://127.0.0.1:8000/myapp/searchUsers?q=<name>
+'http://127.0.0.1:8000/myapp/searchUsers?q=<name>'
 ```
 
   ## Tech Stack Used:-
