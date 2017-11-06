@@ -25,7 +25,7 @@ renewable after every use.
 ```
 curl -X POST
 -d '{   "email"  :  <emailid>,  "password"  : <password>  }'
-'http://localhost:8000/myapp/signup'
+'http://localhost:8000/myapp/login'
 ```
 
 ### Dweet API: `/dweet`
