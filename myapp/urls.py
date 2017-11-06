@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^comment', myapp_views.comment, name='comment'),
     url(r'^follow', myapp_views.follow, name='follow'),
     url(r'^feed', myapp_views.feed, name='feed'),
-
+    url(r'^searchDweet', myapp_views.searchDweet, name='searchDweet'),
+    url(r'^searchusers', myapp_views.searchDweeter, name='searchusers'),
 
 ]
