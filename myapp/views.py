@@ -3,21 +3,15 @@ from __future__ import unicode_literals
 
 import uuid
 import json
-
-import time
-
 import datetime
-from django.shortcuts import render
 from django.http import HttpResponse, request, HttpRequest
-
-# Create your views here.
-from django.utils.decorators import method_decorator
-from django.views.decorators.csrf import csrf_exempt, ensure_csrf_cookie
-from haystack.inputs import AutoQuery
-from haystack.query import SearchQuerySet
 from passlib.handlers.pbkdf2 import pbkdf2_sha256
 
 from myapp.models import Account, User, Session, Dweet, Like, Comment, Follower
+
+import requests
+
+ES_ENDPOINT = "http://127.0.0.1:9200/dweet_search/_search"
 
 
 def hello(request):
@@ -69,7 +63,6 @@ def signup_submit(request):
     else:
         errors['error'] = 'error'
         errors['account'] = "Methosd not allowed"
-        # TODO: add http response code 4xx
         return getResonse(errors, 405)
 
 
@@ -82,9 +75,7 @@ def login_submit(request):
             print "=========== VALIDATION ERRORS ============="
             print errors
             return errors
-            # return render_template('login.html', errors=errors, form=request.form)
         else:
-            # url = get_account_url + "/" + request.form['email']
             hash = pbkdf2_sha256.using(rounds=8000, salt=b"10").hash(body['password'])
             print "hash : ", hash
             account = Account.objects.filter(account_email=body['email'], login_password=hash).values()
@@ -98,19 +89,14 @@ def login_submit(request):
                 print "======== SESSION INITIALIZED ============"
                 print response_json
                 return getResonse(response_json, 201)
-                # return profile()
             else:
                 print "===== Username/Password is incorrect =========="
                 errors['password'] = 'Username/Password is incorrect'
                 return getResonse(errors, 403)
-                # return render_template('login.html', errors=errors, form=request.form)
-
 
     else:
         errors['error'] = 'Internal Error'
         return getResonse(errors, 500)
-
-        # return render_template('login.html')
 
 
 def dweet(request):
@@ -254,11 +240,6 @@ def feed(request):
 
     else:
         return getResonse({"status": "failed"}, 405)
-
-
-import requests
-
-ES_ENDPOINT = "http://127.0.0.1:9200/dweet_search/_search"
 
 
 def searchDweet(request):
@@ -484,7 +465,6 @@ def validate_account_verification(form):
 def validate_session(request):
     errors = {}
     try:
-        # print "meta : " ,request.META
         session_id = request.META['HTTP_SESSION_ID']
         account_id = request.META['HTTP_ACCOUNT_ID']
         sess = Session.objects.filter(session_id=session_id, account_id=account_id).values()
