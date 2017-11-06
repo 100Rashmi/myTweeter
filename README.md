@@ -63,7 +63,7 @@ curl -X POST
 'http://127.0.0.1:8000/myapp/follow
 ```
 
-## Get Dweets from followed Dweeters in your Feed `/feed`
+### Get Dweets from followed Dweeters in your Feed `/feed`
 ```
 curl -X GET
 -H 'session-id:<session-id>'
@@ -87,5 +87,9 @@ curl -X GET
 'http://127.0.0.1:8000/myapp/searchUsers?q=<name>
 ```
 
-  
+  ## Tech Stack Used:-
+  - Django
+  - MySql
+  - HayStack
+  - Elastic Search
 
