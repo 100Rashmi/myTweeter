@@ -78,7 +78,7 @@ curl -X GET
 curl -X GET
 -H 'session-id:<session-id>'
 -H 'account-id:<account-id>'
-'http://127.0.0.1:8000/myapp/searchDweet?q=<keywords>
+'http://127.0.0.1:8000/myapp/searchDweet?q=<keywords>'
 ```
 
 ### Search Users API: `/searchUsers`
@@ -86,7 +86,7 @@ curl -X GET
 curl -X GET
 -H 'session-id:<session-id>'
 -H 'account-id:<account-id>'
-'http://127.0.0.1:8000/myapp/searchUsers?q=<name>
+'http://127.0.0.1:8000/myapp/searchUsers?q=<name>'
 ```
 
   ## Tech Stack Used:-
