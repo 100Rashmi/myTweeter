@@ -29,7 +29,8 @@ curl -X POST
 ```
 
 ### Dweet API: `/dweet`
-```curl -X POST 
+```
+ curl -X POST 
 -H 'session-id:<session-id>'
 -H 'account-id:<account-id>'
 -d '{   "dweet_data"    :<dweet data>   }'
@@ -37,7 +38,8 @@ curl -X POST
 ```
 
 ### Comment API: `/comment`
-```curl -X POST 
+```
+ curl -X POST 
 -H 'session-id:<session-id>'
 -H 'account-id:<account-id>'
 -d '{   "dweet_id"  :  <dweet-id>  ,   "comment"   :   <comment>   }'
