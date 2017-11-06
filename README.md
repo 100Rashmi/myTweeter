@@ -24,10 +24,7 @@ This api returns the `account-id` corresponding to the below emailId and a new `
 renewable after every use.  
 ```
 curl -X POST
--d '{
-"email":<emailid>,
-"password":<password>
-}'
+-d '{   "email"  :  <emailid>,  "password"  : <password>  }'
 'http://localhost:8000/myapp/signup'
 ```
 
@@ -35,9 +32,7 @@ curl -X POST
 ```curl -X POST 
 -H 'session-id:<session-id>'
 -H 'account-id:<account-id>'
--d '{
-"dweet_data":<dweet data>
-}'
+-d '{   "dweet_data"    :<dweet data>   }'
 'http://127.0.0.1:8000/myapp/dweet'
 ```
 
@@ -45,10 +40,7 @@ curl -X POST
 ```curl -X POST 
 -H 'session-id:<session-id>'
 -H 'account-id:<account-id>'
--d '{
-"dweet_id":<dweet-id>,
-"comment":<comment>
-}'
+-d '{   "dweet_id"  :  <dweet-id>  ,   "comment"   :   <comment>   }'
 'http://127.0.0.1:8000/myapp/comment'
 ```
 
@@ -58,9 +50,7 @@ curl -X POST
 curl -X POST
 -H 'session-id:<session-id>'
 -H 'account-id:<account-id>'
--d '{
-"entity_id":<anyTweetId or CommentId>
-}'
+-d '{  "entity_id"  :  <anyTweetId or CommentId> }'
 'http://127.0.0.1:8000/myapp/like'
 ```
 
@@ -69,9 +59,7 @@ curl -X POST
 curl -X POST
 -H 'session-id:<session-id>'
 -H 'account-id:<account-id>'
--d '{
-"followed_user_id":<userIdToBeFollowed>
-}'
+-d '{  "followed_user_id"  :  <userIdToBeFollowed>  }'
 'http://127.0.0.1:8000/myapp/follow
 ```
 
