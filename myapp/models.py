@@ -20,6 +20,8 @@ class User(models.Model):
     user_first_name = models.CharField(max_length=50)
     user_last_name = models.CharField(max_length=50)
     user_profile_name = models.CharField(max_length=50, unique=True)
+    created_time = models.DateTimeField()
+    modified_time = models.DateTimeField()
 
     class Meta:
         db_table = 'user'

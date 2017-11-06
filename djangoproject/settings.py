@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'myapp',
     'rest_framework',
     'bootstrap3',
+    'haystack',
 ]
 
 MIDDLEWARE = [
@@ -90,6 +91,15 @@ DATABASES = {
     }
 }
 
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+        'URL': 'http://127.0.0.1:9200/',
+        'INDEX_NAME': 'dweet_search',
+    },
+}
+
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
