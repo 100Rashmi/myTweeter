@@ -315,7 +315,9 @@ def searchDweeter(request):
                     "bool": {
                         "should": [
                             {"match": {"user_first_name": keywords}},
-                            {"match": {"user_last_name": keywords}}
+                            {"match": {"user_last_name": keywords}},
+                            {"match": {"user_profile_name": keywords}},
+
                         ],
                         "minimum_should_match": 1,
                         "must" : [
@@ -336,6 +338,7 @@ def searchDweeter(request):
                 entry = r['_source']
                 print entry
                 dweet = {}
+                dweet['user_id'] = entry['user_id']
                 dweet['user_last_name'] = entry['user_last_name']
                 dweet['user_first_name'] = entry['user_first_name']
                 dweet['user_profile_name'] = entry['user_profile_name']

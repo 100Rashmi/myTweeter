@@ -3,15 +3,14 @@ from django.conf.urls import url
 
 
 urlpatterns = [
-    url(r'^hello', myapp_views.hello, name='hello'),
-    url(r'^signup_submit', myapp_views.signup_submit, name='signup_submit'),
-    url(r'^login_submit', myapp_views.login_submit, name='login_submit'),
+    url(r'^signup', myapp_views.signup_submit, name='signup'),
+    url(r'^login', myapp_views.login_submit, name='login'),
     url(r'^dweet', myapp_views.dweet, name='dweet'),
     url(r'^like', myapp_views.like, name='like'),
     url(r'^comment', myapp_views.comment, name='comment'),
     url(r'^follow', myapp_views.follow, name='follow'),
     url(r'^feed', myapp_views.feed, name='feed'),
     url(r'^searchDweet', myapp_views.searchDweet, name='searchDweet'),
-    url(r'^searchusers', myapp_views.searchDweeter, name='searchusers'),
+    url(r'^searchUsers', myapp_views.searchDweeter, name='searchUsers'),
 
 ]

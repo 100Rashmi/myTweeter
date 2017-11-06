@@ -19,6 +19,7 @@ class DweetIndex(indexes.SearchIndex, indexes.Indexable):
 
 class UserIndex(indexes.SearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True)
+    user_id = indexes.CharField(model_attr='user_id')
     user_first_name = indexes.CharField(model_attr='user_first_name')
     user_last_name = indexes.CharField(model_attr='user_last_name')
     user_profile_name = indexes.CharField(model_attr='user_profile_name')
