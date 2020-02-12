@@ -11,7 +11,7 @@ colorama==0.3.7
 conda==4.3.22
 cryptography==1.7.1
 discovery==0.0.4
-Django==1.11.6
+Django==1.11.28
 django-bootstrap3==9.1.0
 django-filter==1.1.0
 django-haystack==2.6.1
